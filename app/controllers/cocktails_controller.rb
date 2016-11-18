@@ -1,8 +1,8 @@
 class CocktailsController < ApplicationController
-before_action :find_cocktail, only: [ :new, :create ]
+before_action :find_cocktail, only: [ :create ]
 
 
- def index
+  def index
     @cocktails = Cocktail.all
   end
 
@@ -11,12 +11,9 @@ before_action :find_cocktail, only: [ :new, :create ]
   end
 
   def create
-    @cocktail = @Cocktail.new(review_params)
+    @cocktail = @Cocktail.create(cocktail_params)
     @cocktail.save
   end
-
-  def edit
-    
 
   private
 
@@ -24,9 +21,7 @@ before_action :find_cocktail, only: [ :new, :create ]
     params.require(:cocktail).permit(:name)
   end
 
-  def cocktail_
-    @restaurant = Restaurant.find(params[:restaurant_id])
+  def find_cocktail
+    @cocktail = Cocktail.find(params[:cocktail_id])
   end
-
-
 end
